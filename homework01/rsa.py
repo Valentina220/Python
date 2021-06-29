@@ -1,5 +1,6 @@
 import random
 import typing as tp
+import rsa
 
 
 def is_prime(n: int) -> bool:
@@ -39,7 +40,21 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
     # PUT YOUR CODE HERE
-    pass
+
+    b = 1
+    c = 0
+    d = e % phi
+    f = phi
+    while d > 1:
+        g = f / d
+        h = c - b * g
+        i = f - d * g
+        c = b
+        f = d
+        b = h
+        d = i
+    print(b % phi)
+    #pass
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
