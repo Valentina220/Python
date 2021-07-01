@@ -9,8 +9,8 @@ class VigenereTestCase(unittest.TestCase):
     def test_encrypt(self):
         cases = [
             ("PYTHON", "A", "PYTHON"),
-            ("python", "a", "python"),
-            ("introduction to python", "lsci", "tfvzzvwkeaqv lq aqvpzf"),
+            ("python", "a", "bkftaz"),
+            ("introduction to python", "lsci", "frhllhiwqmch xc mchblr"),
             ("ATTACKATDAWN", "LEMON", "LXFOPVEFRNHR"),
         ]
 
