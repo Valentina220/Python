@@ -1,5 +1,6 @@
 import random
 import typing as tp
+import math
 import rsa
 
 
@@ -15,7 +16,19 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    pass
+
+    if n < 2:
+        return False
+    if n == 2:
+        return True
+    limit = math.sqrt(n)
+    i = 2
+    while i <= limit:
+        if n % i == 0:
+            return False
+        i += 1
+    return True
+    #pass
 
 
 def gcd(a: int, b: int) -> int:
@@ -28,7 +41,11 @@ def gcd(a: int, b: int) -> int:
     1
     """
     # PUT YOUR CODE HERE
-    pass
+
+    while b != 0:
+        a, b = b, a % b
+    return a
+    #pass
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -41,19 +58,16 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     """
     # PUT YOUR CODE HERE
 
-    b = 1
-    c = 0
-    d = e % phi
-    f = phi
-    while d > 1:
-        g = f / d
-        h = c - b * g
-        i = f - d * g
-        c = b
-        f = d
-        b = h
-        d = i
-    print(b % phi)
+    i = 1
+    while True:
+        c = phi * i + 1
+        if c % e == 0:
+            if c == e:
+                c = 0
+            c = c / e
+            break
+        i = i + 1
+    return c
     #pass
 
 
@@ -63,10 +77,10 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
     elif p == q:
         raise ValueError("p and q cannot be equal")
 
-    # n = pq
+    n = p * q
     # PUT YOUR CODE HERE
 
-    # phi = (p-1)(q-1)
+    phi = (p-1) * (q-1)
     # PUT YOUR CODE HERE
 
     # Choose an integer e such that e and phi(n) are coprime
